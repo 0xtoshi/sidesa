@@ -16,9 +16,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class Admin extends Controller
 {    
+
 
 	public function login()
 	{
@@ -29,5 +31,39 @@ class Admin extends Controller
 	{
 		return view('template/admin/password-reset');
 	}
+
+	public function AdminDashboard(Request $request)
+	{
+
+		if($request->session()->has('SessionAdmin')){
+
+			return view('template/admin/dashboard1');
+
+		}else{
+
+			return redirect('/');
+		}
+
+	}
+
+	public function InfoDesa(Request $request)
+	{
+
+		if($request->session()->has('SessionAdmin')){
+
+			return view('template/admin/info-desa');
+
+		}else{
+
+			return redirect('/');
+		}
+
+	}
+
+	public function AdminLogOut()
+	{
+		Session::flush();
+		return redirect('/');
+	}	
 
 }

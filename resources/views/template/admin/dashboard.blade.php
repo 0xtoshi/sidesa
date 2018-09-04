@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- v4.0.0 -->
-<link rel="stylesheet" href="dist/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{ url('dist/bootstrap/css/bootstrap.min.css') }}">
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="16x16" href="dist/img/favicon-16x16.png">
@@ -17,15 +17,15 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
 <!-- Theme style -->
-<link rel="stylesheet" href="dist/css/style.css">
-<link rel="stylesheet" href="dist/css/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="dist/css/et-line-font/et-line-font.css">
-<link rel="stylesheet" href="dist/css/themify-icons/themify-icons.css">
-<link rel="stylesheet" href="dist/css/simple-lineicon/simple-line-icons.css">
+<link rel="stylesheet" href="{{ url('dist/css/style.css') }}">
+<link rel="stylesheet" href="{{ url('dist/css/font-awesome/css/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ url('dist/css/et-line-font/et-line-font.css') }}">
+<link rel="stylesheet" href="{{ url('dist/css/themify-icons/themify-icons.css') }}">
+<link rel="stylesheet" href="{{ url('dist/css/simple-lineicon/simple-line-icons.css') }}">
 
 <!-- Chartist CSS -->
-<link rel="stylesheet" href="dist/plugins/chartist-js/chartist.min.css">
-<link rel="stylesheet" href="dist/plugins/chartist-js/chartist-plugin-tooltip.css">
+<link rel="stylesheet" href="{{ url('dist/plugins/chartist-js/chartist.min.css') }}">
+<link rel="stylesheet" href="{{ url('dist/plugins/chartist-js/chartist-plugin-tooltip.css') }}">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

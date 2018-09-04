@@ -20,7 +20,11 @@ Route::get('/', function () {
 
 Route::get('/admin/login','Admin@login');
 Route::get('/admin/password_reset','Admin@password_reset');
-
+Route::get('/admin/dashboard','Admin@AdminDashboard');
+Route::get('/admin/logout','Admin@AdminLogOut');
+Route::get('/admin/info-desa/identitas','Admin@InfoDesa');
+Route::get('/admin/info-desa/wilayah','Admin@InfoDesa');
+Route::get('/admin/info-desa/pegawai','Admin@InfoDesa');
 
 
 
