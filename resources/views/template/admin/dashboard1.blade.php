@@ -164,14 +164,40 @@
       <br/>
       <!-- sidebar menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">PERSONAL</li>
-        <li class="treeview"> <a href="#"> <i class="icon-home"></i> <span>Dashboard</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+        <li class="header">Main</li>
+        <li><a href="index.html"><i class="icon-home"></i> Dashboard </a></li>
+        <li class="treeview"> <a href="#"> <i class="icon-paper-clip"></i> <span>Informasi Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
-            <li><a href="index.html"><i class="fa fa-angle-right"></i> Modern</a></li>
-            <li><a href="index-crm.html"><i class="fa fa-angle-right"></i> CRM</a></li>
-            <li><a href="index-analytics.html"><i class="fa fa-angle-right"></i> Analytics</a></li>
-            <li><a href="index-ecommerce.html"><i class="fa fa-angle-right"></i> Ecommerce</a></li>
-            <li><a href="index-medical.html"><i class="fa fa-angle-right"></i> Medical</a></li>
+            <li><a href="index.html"><i class="icon-layers"></i> Informasi Desa </a></li>
+            <li><a href="index-crm.html"><i class="icon-menu"></i> Daftar Dusun </a></li>
+            <li><a href="index-analytics.html"><i class="icon-direction"></i> Pegawai </a></li>
+          </ul>
+        </li>
+        <li class="treeview"> <a href="#"> <i class="icon-people"></i> <span>Penduduk Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu">
+            <li><a href="index.html"><i class="icon-menu"></i> Daftar Penduduk </a></li>
+            <li><a href="index-crm.html"><i class="icon-user-following"></i> Daftar Keluarga </a></li>
+            <li><a href="index-analytics.html"><i class="icon-user-follow"></i> Siap Pemilu </a></li>
+          </ul>
+        </li>
+        <li class="treeview"> <a href="#"> <i class="icon-envelope-open"></i> <span>Surat dan Ijin</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu">
+            <li><a href="index.html"><i class="icon-note"></i> Pembuatan Surat </a></li>
+            <li><a href="index-crm.html"><i class="icon-share-alt"></i> Pengajuan Surat </a></li>
+            <li><a href="index-analytics.html"><i class="icon-printer"></i> Cetak Surat Manual </a></li>
+          </ul>
+        </li>
+        <li class="treeview"> <a href="#"> <i class="icon-support"></i> <span>Laporan dan Statistik</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu">
+            <li><a href="index.html"><i class="icon-tag"></i> Laporan Warga </a></li>
+            <li><a href="index-crm.html"><i class="icon-shuffle"></i> Statistik </a></li>
+          </ul>
+        </li>
+
+        <li class="treeview"> <a href="#"> <i class=" icon-settings"></i> <span>Pengaturan</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+          <ul class="treeview-menu">
+            <li><a href="index.html"><i class="icon-tag"></i> Daftar Admin </a></li>
+            <li><a href="index-crm.html"><i class="icon-shuffle"></i> Database </a></li>
           </ul>
         </li>
         
