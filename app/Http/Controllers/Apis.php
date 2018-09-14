@@ -22,6 +22,15 @@ use App\BackendAdmin;
 
 class Apis extends Controller
 {
+
+	public function initAdmin(Request $request)
+	{
+		if(!$request->session()->has('SessionAdmin')){
+
+			return ['success' => false, 'message' => 'Sesi tidak ditemukan'];
+			exit;
+		}
+	}
    
 	public function CheckAdminLogin(Request $request)
 	{
@@ -75,6 +84,78 @@ class Apis extends Controller
 		return BackendAdmin::password_reset_apply($data);
 
 	}	
+
+
+	public function getMainData(Request $request)
+	{
+		
+		if(!$request->session()->has('SessionAdmin')){
+			return ['success' => false, 'message' => 'Sesi tidak ditemukan'];
+			exit;
+		}
+
+		return BackendAdmin::getMainData();
+	}
+
+
+
+	public function UpdateIdentitasDesa(Request $request)
+	{
+		
+		if(!$request->session()->has('SessionAdmin')){
+			return ['success' => false, 'message' => 'Sesi tidak ditemukan'];
+			exit;
+		}
+
+		$input = [
+
+			'nama_desa' => $request->input('nama_desa'),
+			'kode_desa' => $request->input('kode_desa'),
+			'kode_pos' => $request->input('kode_pos'),
+			'nama_kepala_desa' => $request->input('nama_kepala_desa'),
+			'nip_kepala_desa' => $request->input('nip_kepala_desa'),
+			'telepon_desa' => $request->input('telepon_desa'),
+			'email_desa' => $request->input('email_desa'),
+			'alamat_desa' => $request->input('alamat_desa')
+
+		];
+
+		foreach ($input as $key => $value) {
+			
+			if($value == '')
+			{	
+				$callback = ['success' => false, 'message' => 'Anda harus mengisi form '. $key];
+				break;
+			}else{
+
+				$callback = BackendAdmin::InsertIdentitasDesa($input);
+				break;
+			}
+
+		}
+
+		return $callback;
+
+	}
+
+	public function getIdentitasDesa(Request $request)
+	{
+
+		if(!$request->session()->has('SessionAdmin')){
+			return ['success' => false, 'message' => 'Sesi tidak ditemukan'];
+			exit;
+		}
+
+		return BackendAdmin::getIdentitasDesa();
+
+	}
+
+	public function getDataDusun()
+	{
+
+		return BackendAdmin::GroupingDusun();
+
+	}
 
 
 }

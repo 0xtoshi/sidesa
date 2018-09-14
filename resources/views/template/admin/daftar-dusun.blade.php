@@ -210,29 +210,31 @@
   <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
     <div class="content-header sty-one">
-      <h1>Identitas Desa</h1>
+      <h1>Daftar Dusun</h1>
       <ol class="breadcrumb">
         <li><a href="#">Informasi Desa</a></li>
-        <li><i class="fa fa-angle-right"></i> Identitas Desa </li>
+        <li><i class="fa fa-angle-right"></i> Daftar Dusun </li>
       </ol>
     </div>
     
     <!-- Main content -->
 
+    <div class="content">
+      <div id="inner-dusune" class="row">
+
+        
+
+
+      </div>
+    </div>
 
 
     <div class="content">
-
-    
-
-
-
-
     <div class="row">
         <div class="col-lg-12 m-b-3">
           <div class="box box-info">
             <div class="box-header with-border p-t-1">
-              <h3 class="box-title text-black">Info Dasar Identitas Desa</h3>
+              <h3 class="box-title text-black">Daftar Dusun</h3>
 
               
               
@@ -243,56 +245,7 @@
             <div class="card">
               <div class="card-body">
 
-                <div id="pesan-callback"></div>
 
-                <form id="update_identitas" type="POST">
-
-                  <fieldset class="form-group">
-                      <label>Nama Desa</label>
-                      <input name="nama_desa" id="nama_desa" class="form-control" id="basicInput" type="text">
-                    </fieldset>
-                  
-                  <fieldset class="form-group">
-                      <label>Kode Desa</label>
-                      <input name="kode_desa" id="kode_desa" class="form-control" id="basicInput" type="text">
-                    </fieldset>
-                  
-                  <fieldset class="form-group">
-                      <label>Kode POS</label>
-                      <input name="kode_pos" id="kode_pos" class="form-control" id="basicInput" type="text">
-                    </fieldset>
-                  
-                  <fieldset class="form-group">
-                      <label>Kepala Desa</label>
-                      <input name="nama_kepala_desa" id="nama_kepala_desa" class="form-control" id="basicInput" type="text">
-                    </fieldset>
-                  
-                  <fieldset class="form-group">
-                      <label>NIP Kepala Desa</label>
-                      <input name="nip_kepala_desa" id="nip_kepala_desa" class="form-control" id="basicInput" type="text">
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                      <label>Telepon Desa</label>
-                      <input name="telepon_desa" id="telepon_desa" class="form-control" id="basicInput" type="text">
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                      <label>Email Desa</label>
-                      <input name="email_desa" id="email_desa" class="form-control" id="basicInput" type="text">
-                    </fieldset>
-
-                    <fieldset class="form-group">
-                      <label>Alamat Lengkap Desa</label>
-                      <textarea name="alamat_desa" id="alamat_desa" class="form-control" rows="5"></textarea>
-                    </fieldset>
-
-                    <button type="submit" class="btn btn-success">Perbarui</button>
-
-
-
-
-                </form>
 
 
               </div>
@@ -334,52 +287,50 @@
 
 <script type="text/javascript">
   
-  $('#update_identitas').submit(function(e){
-
-    e.preventDefault();
-
-    var post_data = $('#update_identitas').serialize();
-
-    $.ajax({
-
-      url : '/api/admin/update_identitas',
-      type : 'POST',
-      data : post_data,
-      dataType : 'JSON',
-      success : function(data){
-
-        if(data.success == true)
-        {
-          $('#pesan-callback').html('<div class="alert alert-success">'+data.message+'</div>');
-        }else{
-          $('#pesan-callback').html('<div class="alert alert-danger">'+data.message+'</div>');
-        }
-
-      },
-      error : function()
-      {
-        $('#pesan-callback').html('<div class="alert alert-danger">Error terjadi ketika mengupdate ke server</div>');
-      }
-
-    });
-
-  });
+  
 
 
   $('document').ready(function()
   {
 
+   
 
     $.ajax({
 
-      url : '/api/admin/get_identitas',
+      url : '/api/admin/get_datadusun',
       type : 'GET',
       dataType : 'JSON',
       success : function(data)
       {
-          $.each(data[0], function(index,value){
+          $.each(data, function(index,value){
 
-            $('#'+index).val(value);
+             if((value.total <= 100) && (value.total >= 0))
+             {
+                var random = 3;
+             }else if( (value.total <= 200) && (value.total >= 100) )
+             {
+              var random = 2;
+             }else{
+              var random = 4;
+             }
+
+            $('#inner-dusune').append(`
+
+        <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
+          <div class="card">
+            <div class="card-body box-rounded box-gradient-`+random+`"> <span class="info-box-icon bg-transparent"><i class="ti-home text-white"></i></span>
+              <div class="info-box-content">
+                
+                <h1 class="text-white">`+value.total+`</h1>
+                <span class="progress-description text-white"> Total warga dusun `+value.alamat+`</span> </div>
+            </div>
+          </div>
+        </div>
+
+          
+
+
+              `);
 
           });
 

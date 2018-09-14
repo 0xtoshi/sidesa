@@ -107,7 +107,9 @@
         if(data.success == false){
           $('#alert').html(`<div class="alert alert-danger">`+data.message+`</div>`);
         }else{
-          $('#alert').html(`<div class="alert alert-success">`+data.message+`</div>`);
+          $('#alert').html(`<div class="alert alert-success">`+data.message+`</div>
+            <meta http-equiv="refresh" content="0;URL='dashboard'" />
+            `);
         }
       },
       error : function()

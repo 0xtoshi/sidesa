@@ -21,6 +21,17 @@ use Session;
 class Admin extends Controller
 {    
 
+	public function init(Request $request)
+	{
+		if($request->session()->has('SessionAdmin')){
+
+			return redirect('/admin/dashboard');
+
+		}else{
+
+			return redirect('/admin/login');
+		}
+	}
 
 	public function login()
 	{
@@ -52,6 +63,19 @@ class Admin extends Controller
 		if($request->session()->has('SessionAdmin')){
 
 			return view('template/admin/info-desa');
+
+		}else{
+
+			return redirect('/');
+		}
+
+	}
+	public function DaftarDusun(Request $request)
+	{
+
+		if($request->session()->has('SessionAdmin')){
+
+			return view('template/admin/daftar-dusun');
 
 		}else{
 

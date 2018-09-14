@@ -161,5 +161,61 @@ class BackendAdmin extends Model
 		return $status;
 	}
 
+	public static function getMainData()
+	{
+
+		$getDataWarga = DB::table('data_warga')
+						->select('id')
+						->get();
+		$getAdminUser = DB::table('user_administrator')
+						->select('id')
+						->get();
+		// belum selesai
+
+		return [
+
+			'jumlah_db_warga' => count($getDataWarga),
+			'jumlah_db_admin' => count($getAdminUser)
+
+		];
+
+	}
+
+	public static function InsertIdentitasDesa($data)
+	{
+		DB::table('info_desa')->insert($data);
+		return ['success' => true, 'message' => 'Sukses mengupdate identitas desa!'];
+	}
+
+	public static function getIdentitasDesa()
+	{
+		return DB::table('info_desa')
+				->select(
+					'nama_desa',
+					'kode_desa',
+					'kode_pos',
+					'nama_kepala_desa',
+					'nip_kepala_desa',
+					'telepon_desa',
+					'email_desa',
+					'alamat_desa'
+					)
+					->orderBy('id','DESC')
+					->limit(1)
+					->get();
+	}
+
+
+	public static function GroupingDusun()
+	{
+		
+		      return DB::table('data_warga')
+				    ->select(DB::raw('alamat, count(alamat) as total'))
+				    ->groupBy('alamat')
+				    ->orderBy('total')
+				    ->get();
+		
+	}
+
 
 }

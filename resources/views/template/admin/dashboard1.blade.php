@@ -229,7 +229,7 @@
             <div class="card-body box-rounded box-gradient"> <span class="info-box-icon bg-transparent"><i class="ti-user text-white"></i></span>
               <div class="info-box-content">
                 <h6 class="info-box-text text-white">Data Warga</h6>
-                <h1 class="text-white">5,500</h1>
+                <h1 class="text-white" id="jumlah_data_warga"></h1>
                 <span class="progress-description text-white"> Data warga di database </span> </div>
             </div>
           </div>
@@ -239,7 +239,7 @@
             <div class="card-body box-rounded box-gradient-4"> <span class="info-box-icon bg-transparent"><i class="ti-face-smile text-white"></i></span>
               <div class="info-box-content">
                 <h6 class="info-box-text text-white">Admin Desa</h6>
-                <h1 class="text-white">5</h1>
+                <h1 class="text-white" id="jumlah_admin_desa"></h1>
                 <span class="progress-description text-white"> Total admin desa </span> </div>
             </div>
           </div>
@@ -414,6 +414,26 @@
 <script src="{{ url('dist/plugins/chartist-js/chartist.min.js') }}"></script> 
 <script src="{{ url('dist/plugins/chartist-js/chartist-plugin-tooltip.js') }}"></script> 
 <script src="{{ url('dist/plugins/functions/chartist-init.js') }}"></script>
+
+<script type="text/javascript">
+  
+  $.ajax({
+
+    url : '/api/admin/main_data',
+    type : 'GET',
+    dataType : 'JSON',
+    success : function(data){
+      $('#jumlah_data_warga').html(data.jumlah_db_warga);
+      $('#jumlah_admin_desa').html(data.jumlah_db_admin);
+    },
+    error : function()
+    {
+        console.log('tidak bisa mengambil main data');
+    }
+
+  });
+
+</script>
 
 </body>
 </html>
