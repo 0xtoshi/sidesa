@@ -179,7 +179,7 @@ display: none;
       <!-- sidebar menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Main</li>
-        <li><a href="index.html"><i class="icon-home"></i> Dashboard </a></li>
+        <li><a href="{{ url('/admin/dashboard') }}"><i class="icon-home"></i> Dashboard </a></li>
         <li class="treeview"> <a href="#"> <i class="icon-paper-clip"></i> <span>Identitas Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('admin/info-desa/identitas') }}"><i class="icon-layers"></i> Informasi Desa </a></li>
