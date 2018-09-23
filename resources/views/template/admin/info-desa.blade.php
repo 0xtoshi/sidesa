@@ -166,18 +166,18 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Main</li>
         <li><a href="index.html"><i class="icon-home"></i> Dashboard </a></li>
-        <li class="active treeview"> <a href="#"> <i class="icon-paper-clip"></i> <span>Identitas Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+       <li class="active treeview"> <a href="#"> <i class="icon-paper-clip"></i> <span>Identitas Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="icon-layers"></i> Informasi Desa </a></li>
-            <li><a href="index-crm.html"><i class="icon-menu"></i> Daftar Dusun </a></li>
-            <li><a href="index-analytics.html"><i class="icon-direction"></i> Pegawai </a></li>
+            <li class="active"><a href="{{ url('admin/info-desa/identitas') }}"><i class="icon-layers"></i> Informasi Desa </a></li>
+            <li><a href="{{ url('admin/info-desa/wilayah') }}"><i class="icon-menu"></i> Daftar Dusun </a></li>
+            <li><a href="{{ url('admin/info-desa/pegawai') }}"><i class="icon-direction"></i> Pegawai </a></li>
           </ul>
         </li>
         <li class="treeview"> <a href="#"> <i class="icon-people"></i> <span>Penduduk Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
-            <li><a href="index.html"><i class="icon-menu"></i> Daftar Penduduk </a></li>
-            <li><a href="index-crm.html"><i class="icon-user-following"></i> Daftar Keluarga </a></li>
-            <li><a href="index-analytics.html"><i class="icon-user-follow"></i> Siap Pemilu </a></li>
+            <li><a href="{{ url('admin/penduduk/list') }}"><i class="icon-menu"></i> Daftar Penduduk </a></li>
+            <li><a href="{{ url('admin/penduduk/keluarga') }}"><i class="icon-user-following"></i> Daftar Keluarga </a></li>
+            <li><a href="{{ url('admin/penduduk/pemilu') }}"><i class="icon-user-follow"></i> Siap Pemilu </a></li>
           </ul>
         </li>
         <li class="treeview"> <a href="#"> <i class="icon-envelope-open"></i> <span>Surat dan Ijin</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>

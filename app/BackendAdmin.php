@@ -217,5 +217,96 @@ class BackendAdmin extends Model
 		
 	}
 
+	public static function ListDataWarga()
+	{
+
+		return DB::table('data_warga')
+				
+				->orderBy('nama_lengkap','ASC')
+				->get();
+
+	}
+
+
+	public static function GetDataPegawai()
+	{
+
+		return DB::table('data_pegawai')
+				
+				->orderBy('nama','ASC')
+				->get();
+
+	}
+
+
+	public static function TambahPegawai($data)
+	{
+
+		return DB::table('data_pegawai')->insert($data);
+
+	} 
+
+	public static function ListDataWargaByDusun($dusun)
+	{
+
+		$command = DB::table('data_warga')
+				->select('nama_lengkap','jenis_kelamin','agama','tgl_lahir','nik')
+				->orderBy('nama_lengkap','ASC')
+				->where('alamat','=',$dusun)
+				->get();
+		$data = [];
+		foreach ($command as $key => $value) {
+			$data[] = [ $value->nama_lengkap, $value->jenis_kelamin, $value->agama, $value->tgl_lahir, $value->nik ];
+		}
+		return $data;
+	}
+
+	public static function LisDataWargaByNama($nama)
+	{
+		/*
+
+		`id`, `nik`, `no_kk`, `nama_lengkap`, `nama_kk`, `tgl_lahir`, `jenis_kelamin`, `tempat_lahir`, `golongan_darah`, `agama`, `status_kawin`, `status_hbkel`, `kelainan`, `penyandang_cacat`, `pendidikan`, `pekerjaan`, `nama_ibu`, `nama_ayah`, `alamat`, `RT`, `RW`, `no_kecamatan`, `nama_kecamatan`, `no_kelurahan`, `nama_kelurahan`SELECT * FROM `data_warga` WHERE 1
+
+
+		NIK	Nama	Tempat Lahir	Tanggal Lahir	Jenis Kelamin	Agama	Status Kawin	Pendidikan	Pekerjaan	RT	RW	Alamat	Golongan Darah
+
+		 */
+
+
+		if($nama == ""){
+
+
+		$command = DB::table('data_warga')
+				->select('nik','nama_lengkap','tempat_lahir','tgl_lahir','jenis_kelamin','agama','status_kawin','pendidikan','pekerjaan','RT','RW','alamat','golongan_darah')
+				->orderBy('nama_lengkap','ASC')
+				->limit(30)
+				->get();
+		$data = [];
+		foreach ($command as $key => $value) {
+			$data[] = [ $value->nik, $value->nama_lengkap, $value->tempat_lahir,$value->tgl_lahir, $value->jenis_kelamin, $value->agama, $value->status_kawin, $value->pendidikan, $value->pekerjaan, $value->RT, $value->RW, $value->alamat, $value->golongan_darah ];
+		}
+
+
+		}else{
+
+
+		$command = DB::table('data_warga')
+				->select('nik','nama_lengkap','tempat_lahir','tgl_lahir','jenis_kelamin','agama','status_kawin','pendidikan','pekerjaan','RT','RW','alamat','golongan_darah')
+				->orderBy('nama_lengkap','ASC')
+				->where('nama_lengkap','like','%' .$nama. '%')
+				->get();
+		$data = [];
+		foreach ($command as $key => $value) {
+						$data[] = [ $value->nik, $value->nama_lengkap, $value->tempat_lahir,$value->tgl_lahir, $value->jenis_kelamin, $value->agama, $value->status_kawin, $value->pendidikan, $value->pekerjaan, $value->RT, $value->RW, $value->alamat, $value->golongan_darah ];
+		}
+
+
+		}
+
+		
+		return $data;
+		
+	}
+
 
 }

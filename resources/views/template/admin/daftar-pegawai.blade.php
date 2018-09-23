@@ -27,8 +27,6 @@
 <link rel="stylesheet" href="{{ url('dist/plugins/chartist-js/chartist.min.css') }}">
 <link rel="stylesheet" href="{{ url('dist/plugins/chartist-js/chartist-plugin-tooltip.css') }}">
 
-<link rel="stylesheet" href="{{ url('dist/plugins/datatables/css/dataTables.bootstrap.min.css') }} ">
-
 <!-- HTML5 Shim and Respond.js') }} IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js') }} doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -168,11 +166,11 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Main</li>
         <li><a href="index.html"><i class="icon-home"></i> Dashboard </a></li>
-        <li class="active treeview"> <a href="#"> <i class="icon-paper-clip"></i> <span>Identitas Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+       <li class="active treeview"> <a href="#"> <i class="icon-paper-clip"></i> <span>Identitas Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('admin/info-desa/identitas') }}"><i class="icon-layers"></i> Informasi Desa </a></li>
-            <li class="active"><a href="{{ url('admin/info-desa/wilayah') }}"><i class="icon-menu"></i> Daftar Dusun </a></li>
-            <li><a href="{{ url('admin/info-desa/pegawai') }}"><i class="icon-direction"></i> Pegawai </a></li>
+            <li><a href="{{ url('admin/info-desa/wilayah') }}"><i class="icon-menu"></i> Daftar Dusun </a></li>
+            <li class="active"><a href="{{ url('admin/info-desa/pegawai') }}"><i class="icon-direction"></i> Pegawai </a></li>
           </ul>
         </li>
         <li class="treeview"> <a href="#"> <i class="icon-people"></i> <span>Penduduk Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
@@ -212,65 +210,94 @@
   <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
     <div class="content-header sty-one">
-      <h1>Daftar Dusun</h1>
+      <h1>Identitas Desa</h1>
       <ol class="breadcrumb">
         <li><a href="#">Informasi Desa</a></li>
-        <li><i class="fa fa-angle-right"></i> Daftar Dusun </li>
+        <li><i class="fa fa-angle-right"></i> Identitas Desa </li>
       </ol>
     </div>
     
     <!-- Main content -->
 
+    <!-- Main content -->
     <div class="content">
-      <div id="inner-dusune" class="row">
-
-        
-
-
-      </div>
-    </div>
-
-
-    <div class="content">
-    <div class="row">
-        <div class="col-lg-12 m-b-3">
-          
-
-<div id="list" class="card m-t-3">
+      <div class="card">
       <div class="card-body">
-      <h4 class="text-black">Data Table</h4>
-      <p>Data Table With Full Features</p>
-      <div class="table-responsive">
-                  <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Nama</th>
-                  <th>Jenis Kelamin</th>
-                  <th>Agama</th>
-                  <th>Tanggal Lahir</th>
-                  <th>NIK</th>
-                </tr>
-                </thead>
-                <tbody>
+        <h4 class="text-black">Daftar Pegawai</h4>
+        <p>Pegawai Kelurahan Jati Sobo</p>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">NIK</th>
+                <th scope="col">Nama</th>
+                <th scope="col">No Hp</th>
+                <th scope="col">Jabatan</th>
+                <th scope="col">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              @foreach( $data as $key => $value )
 
-               
-                </tfoot>
-              </table>
-                  </div>
-      </div></div>
-    </div>
+              <tr>
+                <th scope="row">{{ $key+1 }}</th>
+                <td>{{ $value->nik }}</td>
+                <td>{{ $value->nama }}</td>
+                <td>{{ $value->kontak }}</td>
+                <td>{{ $value->jabatan }}</td>
+                <td><button id="{{$value->id}}" class="btn btn-primary">Edit/Hapus</button></td>
+                
+              </tr>
 
-
-
-
-
+              @endforeach 
+              
+            </tbody>
+          </table>
         </div>
       </div>
-
-
-
     </div>
-    <!-- /.content --> 
+  </div>
+<!-- jQuery 3 --> 
+
+<div class="content">
+      <div class="card">
+      <div class="card-body">
+        <h4 class="text-black">Tambah Pegawai</h4>
+        <p>Tambah Pegawai Kelurahan Jati Sobo</p>
+        
+
+          <form id="tambah_pegawai" method="POST">
+
+          <div id="tambah_pegawai_callback"></div>
+
+          <div class="form-group">
+          <label for="NIK">NIK</label>
+          <input type="text" name="nik" class="form-control">
+          </div>
+          <div class="form-group">
+          <label for="NIK">Nama Lengkap</label>
+          <input type="text" name="nama" class="form-control">
+          </div>
+          <div class="form-group">
+          <label for="NIK">Kontak</label>
+          <input type="text" name="kontak" class="form-control">
+          </div>
+          <div class="form-group">
+          <label for="NIK">Jabatan</label>
+          <input type="text" name="jabatan" class="form-control">
+          </div>
+
+          <button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i> Tambah</button>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -297,93 +324,36 @@
 
 <script type="text/javascript">
   
-  
+  $('#tambah_pegawai').submit(function(e){
 
 
-  $('document').ready(function()
-  {
+    e.preventDefault();
 
-   
+    var form = $('#tambah_pegawai').serialize();
 
     $.ajax({
 
-      url : '/api/admin/get_datadusun',
-      type : 'GET',
+      url : '/api/admin/tambah_pegawai',
+      type : 'POST',
+      data : form,
       dataType : 'JSON',
-      success : function(data)
-      {
-          $.each(data, function(index,value){
+      success : function(data){
 
-             if((value.total <= 100) && (value.total >= 0))
-             {
-                var random = 2;
-             }else if( (value.total <= 200) && (value.total >= 100) )
-             {
-              var random = 3;
-             }else{
-              var random = 4;
-             }
-
-            $('#inner-dusune').append(`
-
-        <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
-          <a href="#list" onclick="kontoru('`+value.alamat+`');" class="card">
-            <div class="card-body box-rounded box-gradient-`+random+`"> <span class="info-box-icon bg-transparent"><i class="ti-home text-white"></i></span>
-              <div class="info-box-content">
-                
-                <h1 class="text-white">`+value.total+`</h1>
-                <span class="progress-description text-white"> Total warga dusun `+value.alamat+`</span> </div>
-            </div>
-          </a>
-        </div>
-
-          
-
-
-              `);
-
-          });
+        $('#tambah_pegawai_callback').html('<div class="alert alert-success">'+data.message+'</div>');
+        $('#tambah_pegawai_callback').append('<meta http-equiv="refresh" content="2">');
 
       },
-      error : function(err)
+      error : function()
       {
-        console.log('Gagal Mengambil Identitas Desa'+ err);
+        $('#tambah_pegawai_callback').html('<div class="alert alert-danger">Gagal saat menambahkan data pegawai</div>');
       }
 
     });
 
+
   });
 
 
-  function kontoru(elemen){
-
-
-    
-    $('#example1').dataTable().fnClearTable();
-    $('#example1').dataTable().fnDestroy();
-    $('#example1').DataTable( {
-        "ajax": '/api/admin/get_warga_bydusun?dusun='+elemen
-    } );
- 
-
-
-
-
-  }
-
-</script>
-
-<script src="{{ url('dist/plugins/datatables/jquery.dataTables.min.js') }}"></script> 
-<script src="{{ url('dist/plugins/datatables/dataTables.bootstrap.min.js') }}"></script> 
-<script>
-  
-</script>
-
-<script src="{{ url('dist/plugins/table-expo/filesaver.min.js') }}"></script>
-<script src="{{ url('dist/plugins/table-expo/xls.core.min.js') }}"></script>
-<script src="{{ url('dist/plugins/table-expo/tableexport.js') }}"></script>
-<script>
-$("table").tableExport({formats: ["xlsx","xls", "csv", "txt"],    });
 </script>
 
 </body>

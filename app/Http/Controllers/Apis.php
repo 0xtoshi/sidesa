@@ -17,7 +17,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\BackendAdmin;
-
+use App\DataWarga;
+use DataTables;
 
 
 class Apis extends Controller
@@ -156,6 +157,66 @@ class Apis extends Controller
 		return BackendAdmin::GroupingDusun();
 
 	}
+
+	public function ListDataWarga()
+	{
+		return Datatables::of(BackendAdmin::ListDataWarga())
+        ->addColumn('nama', function($row){
+            return $row->nama_lengkap;
+        })->make(true);
+	}
+
+	public function TambahPegawai(Request $request)
+	{
+		if(!$request->session()->has('SessionAdmin')){
+			return ['success' => false, 'message' => 'Sesi tidak ditemukan'];
+			exit;
+		}
+
+		$data = [
+			'nik' => $request->input('nik'),
+			'nama' => $request->input('nama'),
+			'jabatan' => $request->input('jabatan'),
+			'kontak' => $request->input('kontak'),
+		];
+
+		BackendAdmin::TambahPegawai($data);
+
+		return [ 'success' => true, 'message' => 'Sukses menambahkan data pegawai!' ];
+	}
+
+
+	public function GetWargaByDusun(Request $request)
+	{
+
+		if(!$request->session()->has('SessionAdmin')){
+			return ['success' => false, 'message' => 'Sesi tidak ditemukan'];
+			exit;
+		}
+
+		$dusun = $request->input('dusun');
+		$data['data'] = BackendAdmin::ListDataWargaByDusun($dusun);
+
+		return $data;
+
+	}
+
+	public function GetWargaByNama(Request $request)
+	{
+
+		if(!$request->session()->has('SessionAdmin')){
+			return ['success' => false, 'message' => 'Sesi tidak ditemukan'];
+			exit;
+		}
+
+		$nama = $request->input('nama');
+		$data['data'] = BackendAdmin::LisDataWargaByNama($nama);
+
+		return $data;
+
+	}
+
+
 
 
 }

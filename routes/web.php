@@ -24,8 +24,10 @@ Route::get('/admin/dashboard','Admin@AdminDashboard');
 Route::get('/admin/logout','Admin@AdminLogOut');
 Route::get('/admin/info-desa/identitas','Admin@InfoDesa');
 Route::get('/admin/info-desa/wilayah','Admin@DaftarDusun');
-Route::get('/admin/info-desa/pegawai','Admin@InfoDesa');
+Route::get('/admin/info-desa/pegawai','Admin@DaftarPegawai');
 
+
+Route::get('/admin/penduduk/list','Admin@Penduduk');
 
 
 Route::post('/api/admin/login','Apis@CheckAdminLogin');
@@ -36,3 +38,11 @@ Route::get('/api/admin/main_data','Apis@getMainData');
 Route::post('/api/admin/update_identitas','Apis@UpdateIdentitasDesa');
 Route::get('/api/admin/get_identitas','Apis@getIdentitasDesa');
 Route::get('/api/admin/get_datadusun','Apis@getDataDusun');
+//Route::get('/api/admin/get_datawarga','Apis@ListDataWarga');
+
+Route::get('/api/admin/get_datawarga', 'Apis@ListDataWarga');
+Route::post('/api/admin/tambah_pegawai','Apis@TambahPegawai');
+Route::get('/api/admin/get_warga_bydusun','Apis@GetWargaByDusun');
+Route::get('/api/admin/get_warga_bynama','Apis@GetWargaByNama');
+
+

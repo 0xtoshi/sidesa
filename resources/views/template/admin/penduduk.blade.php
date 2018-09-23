@@ -16,6 +16,15 @@
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 
+<style type="text/css">
+  
+
+.dataTables_filter {
+display: none; 
+}
+
+</style>
+
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ url('dist/css/style.css') }}">
 <link rel="stylesheet" href="{{ url('dist/css/font-awesome/css/font-awesome.min.css') }}">
@@ -28,6 +37,9 @@
 <link rel="stylesheet" href="{{ url('dist/plugins/chartist-js/chartist-plugin-tooltip.css') }}">
 
 <link rel="stylesheet" href="{{ url('dist/plugins/datatables/css/dataTables.bootstrap.min.css') }} ">
+
+
+
 
 <!-- HTML5 Shim and Respond.js') }} IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js') }} doesn't work if you view the page via file:// -->
@@ -168,16 +180,16 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Main</li>
         <li><a href="index.html"><i class="icon-home"></i> Dashboard </a></li>
-        <li class="active treeview"> <a href="#"> <i class="icon-paper-clip"></i> <span>Identitas Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+        <li class="treeview"> <a href="#"> <i class="icon-paper-clip"></i> <span>Identitas Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('admin/info-desa/identitas') }}"><i class="icon-layers"></i> Informasi Desa </a></li>
-            <li class="active"><a href="{{ url('admin/info-desa/wilayah') }}"><i class="icon-menu"></i> Daftar Dusun </a></li>
+            <li><a href="{{ url('admin/info-desa/wilayah') }}"><i class="icon-menu"></i> Daftar Dusun </a></li>
             <li><a href="{{ url('admin/info-desa/pegawai') }}"><i class="icon-direction"></i> Pegawai </a></li>
           </ul>
         </li>
-        <li class="treeview"> <a href="#"> <i class="icon-people"></i> <span>Penduduk Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+        <li  class="active treeview"> <a href="#"> <i class="icon-people"></i> <span>Penduduk Desa</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('admin/penduduk/list') }}"><i class="icon-menu"></i> Daftar Penduduk </a></li>
+            <li class="active"><a href="{{ url('admin/penduduk/list') }}"><i class="icon-menu"></i> Daftar Penduduk </a></li>
             <li><a href="{{ url('admin/penduduk/keluarga') }}"><i class="icon-user-following"></i> Daftar Keluarga </a></li>
             <li><a href="{{ url('admin/penduduk/pemilu') }}"><i class="icon-user-follow"></i> Siap Pemilu </a></li>
           </ul>
@@ -212,43 +224,56 @@
   <div class="content-wrapper"> 
     <!-- Content Header (Page header) -->
     <div class="content-header sty-one">
-      <h1>Daftar Dusun</h1>
+      <h1>Daftar Penduduk</h1>
       <ol class="breadcrumb">
         <li><a href="#">Informasi Desa</a></li>
         <li><i class="fa fa-angle-right"></i> Daftar Dusun </li>
       </ol>
     </div>
     
-    <!-- Main content -->
-
-    <div class="content">
-      <div id="inner-dusune" class="row">
-
-        
-
-
-      </div>
-    </div>
 
 
     <div class="content">
     <div class="row">
         <div class="col-lg-12 m-b-3">
           
+<!-- 
 
+`id`, `nik`, `no_kk`, `nama_lengkap`, `nama_kk`, `tgl_lahir`, `jenis_kelamin`, `tempat_lahir`, `golongan_darah`, `agama`, `status_kawin`, `status_hbkel`, `kelainan`, `penyandang_cacat`, `pendidikan`, `pekerjaan`, `nama_ibu`, `nama_ayah`, `alamat`, `RT`, `RW`, `no_kecamatan`, `nama_kecamatan`, `no_kelurahan`, `nama_kelurahan`SELECT * FROM `data_warga` WHERE 1
+
+
+-->
 <div id="list" class="card m-t-3">
       <div class="card-body">
-      <h4 class="text-black">Data Table</h4>
-      <p>Data Table With Full Features</p>
+      <h4 class="text-black">Data Penduduk</h4>
+      <p>Data Penduduk Desa Jatisobo</p>
+
+      <br/>
+
+<form id="search_nama" class="form-inline">
+  <label class="sr-only" for="inlineFormInput">Cari Nama</label>
+  <input id="nama" type="text" class="form-control mb-4 mr-sm-2 mb-sm-0 form-sm" id="inlineFormInput" placeholder="Masukan Nama">
+
+  <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Cari</button>
+</form>
+
       <div class="table-responsive">
                   <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>NIK</th>
                   <th>Nama</th>
+                  <th>Tempat Lahir</th>
+                  <th>Tanggal Lahir</th>
                   <th>Jenis Kelamin</th>
                   <th>Agama</th>
-                  <th>Tanggal Lahir</th>
-                  <th>NIK</th>
+                  <th>Status Kawin</th>
+                  <th>Pendidikan</th>
+                  <th>Pekerjaan</th>
+                  <th>RT</th>
+                  <th>RW</th>
+                  <th>Alamat</th>
+                  <th>Golongan Darah</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -300,76 +325,14 @@
   
 
 
-  $('document').ready(function()
-  {
 
+
+
+  
    
-
-    $.ajax({
-
-      url : '/api/admin/get_datadusun',
-      type : 'GET',
-      dataType : 'JSON',
-      success : function(data)
-      {
-          $.each(data, function(index,value){
-
-             if((value.total <= 100) && (value.total >= 0))
-             {
-                var random = 2;
-             }else if( (value.total <= 200) && (value.total >= 100) )
-             {
-              var random = 3;
-             }else{
-              var random = 4;
-             }
-
-            $('#inner-dusune').append(`
-
-        <div class="col-lg-3 col-sm-6 col-xs-12 m-b-3">
-          <a href="#list" onclick="kontoru('`+value.alamat+`');" class="card">
-            <div class="card-body box-rounded box-gradient-`+random+`"> <span class="info-box-icon bg-transparent"><i class="ti-home text-white"></i></span>
-              <div class="info-box-content">
-                
-                <h1 class="text-white">`+value.total+`</h1>
-                <span class="progress-description text-white"> Total warga dusun `+value.alamat+`</span> </div>
-            </div>
-          </a>
-        </div>
-
-          
-
-
-              `);
-
-          });
-
-      },
-      error : function(err)
-      {
-        console.log('Gagal Mengambil Identitas Desa'+ err);
-      }
-
-    });
-
-  });
-
-
-  function kontoru(elemen){
-
-
-    
-    $('#example1').dataTable().fnClearTable();
-    $('#example1').dataTable().fnDestroy();
-    $('#example1').DataTable( {
-        "ajax": '/api/admin/get_warga_bydusun?dusun='+elemen
-    } );
  
 
 
-
-
-  }
 
 </script>
 
@@ -384,6 +347,36 @@
 <script src="{{ url('dist/plugins/table-expo/tableexport.js') }}"></script>
 <script>
 $("table").tableExport({formats: ["xlsx","xls", "csv", "txt"],    });
+
+ var table = $('#example1').DataTable( {
+        "ajax": '/api/admin/get_warga_bynama',
+        fixedColumns: true,
+        "paging":   false,
+        "info":     false
+
+    } );
+
+
+
+ $('#search_nama').submit(function(e){
+
+  e.preventDefault();
+
+  var data =  $('#nama').val();
+
+   $('#example1').dataTable().fnClearTable();
+    $('#example1').dataTable().fnDestroy();
+    $('#example1').DataTable( {
+        "ajax": '/api/admin/get_warga_bynama?nama='+data,
+        fixedColumns: true,
+        "paging":   false,
+        "info":     false
+    } );
+
+ });
+
+
+
 </script>
 
 </body>

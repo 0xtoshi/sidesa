@@ -17,6 +17,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
+use App\BackendAdmin;
 
 class Admin extends Controller
 {    
@@ -46,41 +47,41 @@ class Admin extends Controller
 	public function AdminDashboard(Request $request)
 	{
 
-		if($request->session()->has('SessionAdmin')){
-
-			return view('template/admin/dashboard1');
-
-		}else{
-
-			return redirect('/');
+		if(!$request->session()->has('SessionAdmin')){
+			return redirect('/admin/login');
 		}
+
+		return view('template/admin/dashboard1');
 
 	}
 
 	public function InfoDesa(Request $request)
 	{
 
-		if($request->session()->has('SessionAdmin')){
-
-			return view('template/admin/info-desa');
-
-		}else{
-
-			return redirect('/');
+		if(!$request->session()->has('SessionAdmin')){
+			return redirect('/admin/login');
 		}
+		return view('template/admin/info-desa');
 
 	}
 	public function DaftarDusun(Request $request)
 	{
 
-		if($request->session()->has('SessionAdmin')){
-
-			return view('template/admin/daftar-dusun');
-
-		}else{
-
-			return redirect('/');
+		if(!$request->session()->has('SessionAdmin')){
+			return redirect('/admin/login');
 		}
+		return view('template/admin/daftar-dusun',[ 'data' => BackendAdmin::ListDataWarga() ]);
+
+	}
+
+	public function DaftarPegawai(Request $request)
+	{
+
+		if(!$request->session()->has('SessionAdmin')){
+			return redirect('/admin/login');
+		}
+		return view('template/admin/daftar-pegawai',[ 'data' => BackendAdmin::GetDataPegawai() ]);
+
 
 	}
 
@@ -89,5 +90,16 @@ class Admin extends Controller
 		Session::flush();
 		return redirect('/');
 	}	
+
+
+	public function Penduduk(Request $request)
+	{
+
+		if(!$request->session()->has('SessionAdmin')){
+			return redirect('/admin/login');
+		}
+		return view('template/admin/penduduk',[ 'data' => BackendAdmin::GetDataPegawai() ]);
+
+	}
 
 }
